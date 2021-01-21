@@ -1,0 +1,107 @@
+<div class="container1" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="space-between center"
+        style="background-image: url('/src/assets/image/img.jpg');">
+        <div style="padding:2rem;">
+            <button style=padding:5px;color:black;border:none>DEMO APP</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly">
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">HOME</li>
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">ABOUT US</li>
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">JOBS</li>
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">CLIENTS</li>
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">EMPLOYERS</li>
+            <li style="list-style-type: none; padding-right: 1rem; cursor: pointer;color:white">CONTACT US</li>
+        </div>
+    </div>
+    <div style="width: 100%;" fxLayoutAlign="center center">
+        <div style="width: 80%;" fxLayout="column" fxLayoutGap="3rem">
+            <div style="font-style: italic;font-size:xx-large;">I'm looking for..</div>
+            <div style="width: 100%; margin: 10px;">
+                <div fxLayout="row" fxLayoutAlign="center center">
+                    <mat-form-field appearance="fill" style="width: 80%;font-style: italic;">
+                        <input type="text" matInput placeholder="Enter a Job Description" name="search">
+                    </mat-form-field>
+                    <div style="width: 20%; padding-bottom: 1.34375em;" fxLayoutAlign="center center">
+                        <button mat-raised-button color="primary" style="height: 3rem;">
+                            <mat-icon>search</mat-icon>Search
+                        </button>
+                    </div>
+                </div>
+                <div style="width: 80%;" fxLayout="row">
+                    <div style="width: 60%;" fxLayoutAlign="start center">
+                        <mat-checkbox style="font-style: italic;">Full Time</mat-checkbox>
+                        <mat-checkbox style="font-style: italic;padding-left:1rem">Part Time/Casual/Freelance
+                        </mat-checkbox>
+                    </div>
+                    <mat-form-field appearance="fill" style="width: 40%;">
+                        <mat-label>Search your location history</mat-label>
+                        <select matNativeControl required>
+                            <option value="volvo">Mumbai</option>
+                            <option value="saab">Pune</option>
+                            <option value="mercedes">Delhi</option>
+                            <option value="audi">Gujarat</option>
+                        </select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div style="width: 100%; padding-bottom: 2rem;" fxLayoutAlign="center center">
+                <button mat-raised-button color="primary" (click)="openDialog()" style="width: 5rem;">Register</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="gradientDiv"></div>
+<div style="width: 100%;background-color: lightgray;padding: 4rem 0 4rem 0" fxLayout="column"
+    fxLayoutGap="4rem" fxLayoutAlign="center center">
+    <div style="width: 50%;margin-top:4rem;" fxLayout="column" fxLayoutGap="2rem" fxLayoutAlign="center center">
+        <div style="width:100%;font-style: italic;font-size:x-large; " fxLayoutAlign="center center">We're leaders in
+        </div>
+
+        <div style="font-style: italic;font-size:xx-large;" fxLayoutAlign="center center">Creative Digital Recruitment
+        </div>
+        <!-- <div style="width: 100%;" fxLayoutAlign="center center"> -->
+        <div style="width: 20%;border: solid blue;"></div>
+        <!-- </div> -->
+        <div style="font-size: 1rem; text-align:center;" fxLayoutAlign="center center">
+            Based in Surry Hills, the creative hub of Sydney we are surrounded by creativity and that reflects on the
+            type of jobs we recruit for.
+        </div>
+
+    </div>
+
+    <div style="width: 50%;" fxLayoutAlign="center center"><button mat-raised-button color="primary"
+            style="width: 20rem;">FIND
+            MORE ABOUT US</button>
+
+    </div>
+</div>
+<div class="gradientDiv"></div>
+<div style="width: 100%;background-color: darkslategrey;padding: 4rem 0 4rem 0"
+    fxLayout="column" fxLayoutGap="4rem" fxLayoutAlign="center center">
+    <div style="font-size: 10px;" fxLayoutAlign="center center">
+        Subscribe to our Job Seekers Mailing List.
+
+    </div>
+    <div style="width: 50%;position: relative;" fxLayoutAlign="center center">
+        <!-- <mat-form-field appearance="fill" style="width:100%;font-style:italic;"> -->
+        <input type="text" style="width: 50%; border: 1px; border-radius: 5px;height: 3rem;"
+            placeholder="Enter Your Email Address" name="search">
+        <mat-icon style="position: absolute; right: 27%">mail_outline</mat-icon>
+        <!-- </mat-form-field> -->
+    </div>
+
+
+</div>
+<div class="gradientDiv"></div>
+<div style="width:100%; background-color:lightgrey; padding: 2rem 0 2rem 0;"
+    fxLayout="coloumn" fxLayoutGap="3rem">
+
+    <div style="width:30% ;" fxLayoutAlign="center center">
+        <mat-icon style="color:cadetblue;">mail_outline</mat-icon>
+        <input type="text" style="width:40%; border: 1px; border-radius: 2px;height: 1.5rem;" name="search">
+    </div>
+    <div fxLayoutAlign="center center">
+        copyright @ 2014 By Two Bytes Consulting Terms & Condition
+    </div>
+</div>

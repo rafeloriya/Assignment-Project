@@ -1,0 +1,131 @@
+<div style="width:100%; overflow: auto;" fxLayoutGap="1rem" fxLayout="column">
+    <div style="width:100%;background-color: blue;height: 3rem;padding: 0 10px 0 10px;"
+        fxLayoutAlign="space-between center" fxLayout="row">
+        <div style="font-size: 1rem; font-weight: bold;color: #ffffff;">Register</div>
+        <div style="cursor: pointer;" (click)="close()">
+            <mat-icon>close</mat-icon>
+        </div>
+    </div>
+
+    <div style="width:100%" fxLayoutGap="1rem" fxLayoutAlign="" fxLayout="row" [formGroup]="registerForm">
+        <div style="width:100%" fxLayoutGap="1rem" fxLayoutAlign="" fxLayout="row">
+            <div style="width:30%">
+                <div style="width: 100%;height: 7rem;background-color: lightgray;">
+                    <!-- <img src=""> -->
+                </div>
+            </div>
+            <div style="width:70%; padding:10px" fxLayout="column" fxLayoutGap=1rem>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <div fxLayout="column" fxLayoutGap=1rem style="width:55%;">
+                        <mat-form-field appearance="fill" style="width:100%;">
+                            <input formControlName="firstName" matInput placeholder="First Name">
+                        </mat-form-field>
+                        <mat-error *ngIf="!registerForm.controls['firstName'].valid">please enter only alphabets,
+                            maximum length is 20</mat-error>
+                    </div>
+                    <mat-form-field appearance="fill" style="width:38%;">
+                        <input formControlName="lastName" matInput placeholder="Last Name">
+                    </mat-form-field>
+                </div>
+
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <mat-form-field appearance="fill" style="width:100%;">
+                        <input formControlName="email" matInput placeholder="Email">
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <mat-form-field appearance="fill" style="width:100%;">
+                        <input formControlName="phoneNumber" matInput placeholder="Phone Number">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-label>Age</mat-label>
+                    <ng5-slider [(value)]="value" [options]="options"></ng5-slider>
+                </div>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <mat-form-field appearance="fill" style="width:100%;">
+                        <!-- <input type="text" matInput placeholder="State"> -->
+                        <mat-select formControlName="state" placeholder="State">
+                            <mat-option value="Maharashtra">Maharashtra</mat-option>
+                            <mat-option value="Gujarat">Gujarat</mat-option>
+                            <mat-option value="Delhi">Delhi</mat-option>
+                            <mat-option value="Karnataka">Karnataka</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <mat-form-field appearance="fill" style="width:100%;">
+                        <!-- <input type="text" matInput placeholder="Country"> -->
+                        <mat-select formControlName="country" placeholder="country">
+                            <mat-option value="India">India</mat-option>
+                            <mat-option value="USA">USA</mat-option>
+                            <mat-option value="Japan">Japan</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <mat-form-field appearance="fill" style="width:100%;">
+                        <!-- <input type="text" matInput placeholder="Address"> -->
+                        <mat-select formControlName="address" placeholder="Address">
+                            <mat-option value="home">Home</mat-option>
+                            <mat-option value="company">Company</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="registerForm.controls['address'].value === 'home'" fxLayout="column" fxLayoutGap=1rem
+                    style="width:100%;">
+                    <div fxLayout="column" fxLayoutGap=1rem style="width:100%;">
+                        <mat-form-field appearance="fill" style="width:100%;">
+                            <input formControlName="homeAddress1" matInput placeholder="Address 1">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap=1rem style="width:100%;">
+                        <mat-form-field appearance="fill" style="width:100%;">
+                            <input formControlName="homeAddress2" matInput placeholder="Address 2">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div *ngIf="registerForm.controls['address'].value === 'company'" fxLayout="column" fxLayoutGap=1rem
+                    style="width:100%;">
+                    <div fxLayout="column" fxLayoutGap=1rem style="width:100%;">
+                        <mat-form-field appearance="fill" style="width:100%;">
+                            <input formControlName="companyAddress1" matInput placeholder="Company Address 1">
+                        </mat-form-field>
+                    </div>
+                    <div fxLayout="column" fxLayoutGap=1rem style="width:100%;">
+                        <mat-form-field appearance="fill" style="width:100%;">
+                            <input formControlName="companyAddress2" matInput placeholder="Company Address 2">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- <div>
+                                <mat-form-field class="example-chip-list">
+                                    <mat-label>Favorite Fruits</mat-label>
+                                    <mat-chip-list #chipList aria-label="Fruit selection">
+                                      <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable"
+                                               [removable]="removable" (removed)="remove(fruit)">
+                                        {{fruit.name}}
+                                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                                      </mat-chip>
+                                      <input placeholder="New fruit..."
+                                             [matChipInputFor]="chipList"
+                                             [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                             [matChipInputAddOnBlur]="addOnBlur"
+                                             (matChipInputTokenEnd)="add($event)">
+                                    </mat-chip-list>
+                                  </mat-form-field>
+                            </div> -->
+                <div>
+                    <mat-checkbox formControlName="subscriptionToNewsletter">subscribe to newsletter</mat-checkbox>
+                </div>
+                <div fxLayout="row" fxLayoutGap=1rem style="width:100%;">
+                    <button mat-button
+                        style="display: table-cell;font-size: 14px; margin-left: 8px;min-width: 120px;" (click)="close()">Cancel</button>
+                    <button mat-raised-button color="primary" (click)="submitForm()"
+                        style="width: 5rem;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
