@@ -17,44 +17,64 @@ export class RegistrationComponent implements OnInit {
     ceil: 60
   };
   public registerForm: FormGroup;
-  
 
-  constructor(public formBuilder: FormBuilder, public appService: AppService,public router: Router, public dialogref: MatDialogRef<RegistrationComponent>) { }
+
+  constructor(public formBuilder: FormBuilder, public appService: AppService, public router: Router, public dialogref: MatDialogRef<RegistrationComponent>) { }
   // public registerForm: FormGroup;
+
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
-      firstName:['',Validators.compose([
+      firstName: ['', Validators.compose([
         Validators.pattern('[a-zA-Z ]*'),
         Validators.maxLength(20),
       ])],
-      lastName:[],
-      email:[],
-      phoneNumber:[],
-      age:[],
-      state:[],
-      country:[],
-      address:[],
-      homeAddress1:[],
-      homeAddress2:[],
-      companyAddress1:[],
-      companyAddress2:[],
-      subscriptionToNewsletter:[],
+      lastName: [],
+      email: [],
+      phoneNumber: [],
+      age: [],
+      state: [],
+      country: [],
+      address: [],
+      homeAddress1: [],
+      homeAddress2: [],
+      companyAddress1: [],
+      companyAddress2: [],
+      subscriptionToNewsletter: [],
     })
   }
 
-  close(){
+  close() {
     this.registerForm.reset();
     this.dialogref.close();
   }
 
-  submitForm(){
-    this.registerForm.controls['age'].setValue(this.value);
-    console.log(this.registerForm.value);
-    this.appService.userData.push(this.registerForm.value)
-    console.log(this.appService.userData);
-    this.dialogref.close();
-    this.router.navigate(['/profile']);
+  submitForm() {
+
+    debugger
+    this.appService.get().subscribe(response => {
+      console.log(response);
+      let userData: any = response
+      let lastId = userData[userData.length - 1]
+      console.log(lastId.id);
+      this.registerForm.controls['age'].setValue(this.value);
+      console.log(this.registerForm.value);
+      let userObj = this.registerForm.value
+      userObj.id = lastId.id + 1
+      this.appService.addUser(userObj).subscribe(response => {
+        console.log(response);
+        let resp: any = response
+        console.log(resp.id);
+        this.dialogref.close();
+        this.router.navigate(['/profile/', resp.id]);
+      },
+
+        error => {
+
+        })
+    })
+
   }
+  // getUser  
 
 }

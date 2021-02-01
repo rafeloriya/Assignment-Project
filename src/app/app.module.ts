@@ -19,7 +19,8 @@ import {MatSliderModule} from '@angular/material/slider';
 import { Ng5SliderModule } from 'ng5-slider';
 import {MatChipsModule} from '@angular/material/chips';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     Ng5SliderModule,
     MatChipsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatCardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
