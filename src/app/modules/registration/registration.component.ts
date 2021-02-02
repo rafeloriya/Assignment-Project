@@ -17,7 +17,8 @@ export class RegistrationComponent implements OnInit {
     ceil: 60
   };
   public registerForm: FormGroup;
-
+  imagePath: any;
+  previewImage: any;
 
   constructor(public formBuilder: FormBuilder, public appService: AppService, public router: Router, public dialogref: MatDialogRef<RegistrationComponent>) { }
   // public registerForm: FormGroup;
@@ -67,6 +68,11 @@ export class RegistrationComponent implements OnInit {
         console.log(resp.id);
         this.dialogref.close();
         this.router.navigate(['/profile/', resp.id]);
+      this.appService.get().subscribe(response => {
+       console.log(response);
+       this.imagePath.event.target.files[0] = response
+       console.log(response)       
+      })
       },
 
         error => {
@@ -74,6 +80,17 @@ export class RegistrationComponent implements OnInit {
         })
     })
 
+  }
+
+  uploadImage(event: any){
+    console.log(event);
+    console.log(event.target.files[0]);
+    var reader = new FileReader();
+    this.imagePath = event.target.files[0];
+    reader.readAsDataURL(this.imagePath); 
+    reader.onload = (_event) => { 
+      this.previewImage = reader.result; 
+    }
   }
   // getUser  
 

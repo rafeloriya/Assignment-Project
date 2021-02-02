@@ -14,7 +14,7 @@ export class AppService {
     })
   }
   addUser(object: any) {
-    debugger
+    
     let userObj = JSON.stringify(object);
     return this.http.post(this.apiURL + '/user', userObj, this.httpOptions)
   }
