@@ -4,8 +4,7 @@ import { Params, Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
 import { Options } from 'ng5-slider';
 import { ActivatedRoute } from '@angular/router';
-import { getMatIconFailedToSanitizeUrlError } from '@angular/material/icon';
-import { Identifiers } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -15,7 +14,7 @@ import { Identifiers } from '@angular/compiler';
 export class UserProfileComponent implements OnInit {
   userProfile: any;
   id: any;
-  
+
 
   value: number = 20;
   options: Options = {
@@ -23,9 +22,11 @@ export class UserProfileComponent implements OnInit {
     ceil: 60
   };
   public registerForm: FormGroup;
-  
+  imagePath: any;
+
   constructor(public formBuilder: FormBuilder, public appService: AppService, public router: Router, public route: ActivatedRoute) { }
   public profileForm: FormGroup;
+  previewImage: any;
 
   ngOnInit(): void {
     this.userProfile = this.appService.userData;
@@ -60,9 +61,9 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
-  switchAddressType(){
+  switchAddressType() {
     debugger
-    if(this.profileForm.controls['address'].value === 'home'){
+    if (this.profileForm.controls['address'].value === 'home') {
       this.profileForm.controls['companyAddress1'].setValue('')
       this.profileForm.controls['companyAddress2'].setValue('')
     } else {
@@ -78,7 +79,8 @@ export class UserProfileComponent implements OnInit {
       console.log(resp.id);
       this.profileForm.patchValue(resp);
       this.value = Number(resp.age)
-
+      // this.previewImage = resp.imagePath
+      this.uploadImage(resp.imagePath, 'ts')
     }
     )
 
@@ -87,21 +89,43 @@ export class UserProfileComponent implements OnInit {
     console.log(this.profileForm.value);
     console.log(this.value);
     this.profileForm.controls['age'].setValue(this.value);
-    
+
+
     console.log(this.profileForm.value);
     let object = this.profileForm.value
     object.id = this.id
     console.log(this.id);
-    
+
     console.log(object);
-    
-    
-    
-    this.appService.updateUser(object).subscribe(response =>{
+
+
+
+
+    this.appService.updateUser(object).subscribe(response => {
       console.log(response)
     })
+
   }
-  
+
+  uploadImage(event: any, from: any) {
+    // var reader: any
+    if (from === 'ts') {
+      let file : Blob = new Blob(event)
+      this.imagePath = file;
+
+    } else if (from === 'html') {
+      console.log(event);
+      console.log(event.target.files[0]);
+      this.imagePath = event.target.files[0];
+    }
+console.log(this.imagePath);
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.imagePath);
+    reader.onload = (_event) => {
+      this.previewImage = reader.result;
+    }
+  }
 
 }
 

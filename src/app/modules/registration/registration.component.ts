@@ -61,35 +61,48 @@ export class RegistrationComponent implements OnInit {
       this.registerForm.controls['age'].setValue(this.value);
       console.log(this.registerForm.value);
       let userObj = this.registerForm.value
-      userObj.id = lastId.id + 1
+      userObj.id = lastId.id + 1;
+      let obj = {
+        lastModified:this.imagePath.lastModified,
+        lastModifiedDate: this.imagePath.lastModifiedDate,
+        name: this.imagePath.name,
+        size: this.imagePath.size,
+        type: "image/png",
+        webkitRelativePath: ""
+      }
+      console.log(JSON.stringify(obj));
+      
+      userObj.imagePath = JSON.stringify(obj)
+      console.log(userObj.imagePath);
       this.appService.addUser(userObj).subscribe(response => {
         console.log(response);
         let resp: any = response
         console.log(resp.id);
         this.dialogref.close();
         this.router.navigate(['/profile/', resp.id]);
-      this.appService.get().subscribe(response => {
-       console.log(response);
-       this.imagePath.event.target.files[0] = response
-       console.log(response)       
+      }, error => {
+
       })
-      },
-
-        error => {
-
-        })
     })
+
+//     lastModified: 1611227122499
+// lastModifiedDate: Thu Jan 21 2021 16:35:22 GMT+0530 (India Standard Time) {}
+// name: "git hub details.PNG"
+// size: 59364
+// type: "image/png"
+// webkitRelativePath: ""
 
   }
 
-  uploadImage(event: any){
+  uploadImage(event: any) {
     console.log(event);
     console.log(event.target.files[0]);
     var reader = new FileReader();
     this.imagePath = event.target.files[0];
-    reader.readAsDataURL(this.imagePath); 
-    reader.onload = (_event) => { 
-      this.previewImage = reader.result; 
+    console.log(this.imagePath);
+    reader.readAsDataURL(this.imagePath);
+    reader.onload = (_event) => {
+      this.previewImage = reader.result;
     }
   }
   // getUser  
