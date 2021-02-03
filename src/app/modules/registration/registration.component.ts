@@ -94,17 +94,17 @@ export class RegistrationComponent implements OnInit {
 
   }
 
-  // uploadImage(event: any) {
-  //   console.log(event);
-  //   console.log(event.target.files[0]);
-  //   var reader = new FileReader();
-  //   this.imagePath = event.target.files[0];
-  //   console.log(this.imagePath);
-  //   reader.readAsDataURL(this.imagePath);
-  //   reader.onload = (_event) => {
-  //     this.previewImage = reader.result;
-  //   }
-  // }
+  uploadImage(event: any) {
+    console.log(event);
+    console.log(event.target.files[0]);
+    var reader = new FileReader();
+    this.imagePath = event.target.files[0];
+    console.log(this.imagePath);
+    reader.readAsDataURL(this.imagePath);
+    reader.onload = (_event) => {
+      this.previewImage = reader.result;
+    }
+  }
   // getUser  
 
 }
